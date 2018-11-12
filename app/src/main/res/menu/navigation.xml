@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/navigation_find"
+            android:icon="@drawable/recently_radio_button"
+            android:title="@string/title_find"/>
+
+    <item
+            android:id="@+id/navigation_bought"
+            android:icon="@drawable/organization_radio_button"
+            android:title="@string/title_bought"/>
+
+    <item
+            android:id="@+id/navigation_me"
+            android:icon="@drawable/recently_radio_button"
+            android:title="@string/title_me"/>
+
+</menu>
