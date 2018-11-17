@@ -6,6 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="searchViewStyle">@style/FindSearchView</item>
+    </style>
+
+    <style name="FindSearchView" parent="Widget.AppCompat.SearchView">
+        <item name="searchIcon">@drawable/search_bg</item>
+        <item name="queryBackground">@null</item>
     </style>
 
 </resources>

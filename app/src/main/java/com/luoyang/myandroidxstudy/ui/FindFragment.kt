@@ -1,13 +1,12 @@
 package com.luoyang.myandroidxstudy.ui
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import com.luoyang.myandroidxstudy.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import com.luoyang.myandroidxstudy.databinding.FindFragmentBinding
 
 class FindFragment : Fragment() {
 
@@ -17,11 +16,9 @@ class FindFragment : Fragment() {
 
     private lateinit var viewModel: FindViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.find_fragment, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding = FindFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -29,5 +26,4 @@ class FindFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(FindViewModel::class.java)
         // TODO: Use the ViewModel
     }
-
 }
