@@ -18,36 +18,53 @@ package com.luoyang.myandroidxstudy.util
 
 
 import androidx.lifecycle.LiveData
-import com.luoyang.myandroidxstudy.api.ApiResponse
+import com.luoyang.myandroidxstudy.api.ResponseData
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
 import java.lang.reflect.Type
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
- * A Retrofit adapter that converts the Call into a LiveData of ApiResponse.
+ * A Retrofit adapter that converts the Call into a LiveData of ResponseData.
  * @param <R>
 </R> */
 class LiveDataCallAdapter<R>(private val responseType: Type) :
-    CallAdapter<R, LiveData<ApiResponse<R>>> {
+    CallAdapter<R, LiveData<ResponseData<R>>> {
 
     override fun responseType() = responseType
 
-    override fun adapt(call: Call<R>): LiveData<ApiResponse<R>> {
-        return object : LiveData<ApiResponse<R>>() {
+    override fun adapt(call: Call<R>): LiveData<ResponseData<R>> {
+        return object : LiveData<ResponseData<R>>() {
             private var started = AtomicBoolean(false)
             override fun onActive() {
                 super.onActive()
                 if (started.compareAndSet(false, true)) {
                     call.enqueue(object : Callback<R> {
                         override fun onResponse(call: Call<R>, response: Response<R>) {
-                            postValue(ApiResponse.create(response))
+                            var responseData = ResponseData<R>();
+                            if (response.isSuccessful()) {
+                                responseData = response.body() as ResponseData<R>
+                            } else {
+                                try {
+                                    responseData.message = (response.errorBody()?.string());
+                                } catch (e: IOException) {
+                                    e.printStackTrace();
+                                }
+                                responseData.data = null;
+                                responseData.code = response.code();
+                            }
+                            postValue(responseData);
                         }
 
                         override fun onFailure(call: Call<R>, throwable: Throwable) {
-                            postValue(ApiResponse.create(throwable))
+                            val responseData = ResponseData<R>();
+                            responseData.code = 500;
+                            responseData.data = null;
+                            responseData.message = throwable.message
+                            postValue(responseData);
                         }
                     })
                 }
