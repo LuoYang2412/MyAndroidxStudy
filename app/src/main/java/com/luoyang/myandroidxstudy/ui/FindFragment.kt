@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.gson.JsonObject
-import com.luoyang.myandroidxstudy.api.ResponseData
-import com.luoyang.myandroidxstudy.databinding.FindFragmentBinding
+import com.luoyang.myandroidxstudy.R
 import kotlinx.android.synthetic.main.find_fragment.*
 
 class FindFragment : Fragment() {
@@ -19,22 +18,18 @@ class FindFragment : Fragment() {
     }
 
     private lateinit var viewModel: FindViewModel
-    private lateinit var binding: FindFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FindFragmentBinding.inflate(inflater, container, false)
-        return binding.root
+        return inflater.inflate(R.layout.find_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(FindViewModel::class.java)
-        val observer = Observer<ResponseData<JsonObject>>() {
-            when (it.success) {
-                true -> binding.query = it.data.toString()
-                false -> binding.query = it.message
-            }
+        val observer = Observer<JsonObject>() {
+            textView2.text = it.toString()
         }
-        viewModel.getQuery().observe(this, observer)
+        viewModel.query.observe(this, observer)
+        viewModel.getQuery()
     }
 }

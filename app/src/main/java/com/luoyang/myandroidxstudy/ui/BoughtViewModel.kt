@@ -1,13 +1,16 @@
 package com.luoyang.myandroidxstudy.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.google.gson.JsonObject
-import com.luoyang.myandroidxstudy.api.ResponseData
 import com.luoyang.myandroidxstudy.net.NetServerEngine
+import com.luoyang.myandroidxstudy.util.MyCallback
 
 class BoughtViewModel : ViewModel() {
-    fun bought(): LiveData<ResponseData<JsonObject>> {
-        return NetServerEngine.getInstance().getServer().bought()
+    var data = MutableLiveData<JsonObject>()
+    fun bought() {
+        NetServerEngine.instance.mNetServer.bought().enqueue(
+            MyCallback(data)
+        )
     }
 }

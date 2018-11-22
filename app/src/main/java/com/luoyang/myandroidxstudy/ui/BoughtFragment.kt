@@ -9,9 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.gson.JsonObject
 import com.luoyang.myandroidxstudy.R
-import com.luoyang.myandroidxstudy.api.ResponseData
 import kotlinx.android.synthetic.main.bought_fragment.*
-import kotlinx.android.synthetic.main.item_textv.*
 
 class BoughtFragment : Fragment() {
 
@@ -31,13 +29,11 @@ class BoughtFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(BoughtViewModel::class.java)
-        val observer = Observer<ResponseData<JsonObject>> {
-            when (it.success) {
-                true -> textView3.setText(it.data.toString())
-                false -> textView.setText(it.message)
-            }
+        val observer = Observer<JsonObject> {
+            textView3.text = it.toString()
         }
-        viewModel.bought().observe(this, observer)
+        viewModel.data.observe(this, observer)
+        viewModel.bought()
     }
 
 }
