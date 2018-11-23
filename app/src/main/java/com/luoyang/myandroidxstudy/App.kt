@@ -6,7 +6,7 @@ import timber.log.Timber
 /**
  * Application
  */
-class MyAndroidxStudyApp : Application() {
+class App : Application() {
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
