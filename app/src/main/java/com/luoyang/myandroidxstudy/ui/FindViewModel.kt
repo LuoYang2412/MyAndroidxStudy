@@ -2,17 +2,15 @@ package com.luoyang.myandroidxstudy.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.JsonObject
+import com.luoyang.myandroidxstudy.bean.Find
 import com.luoyang.myandroidxstudy.net.NetServerEngine
 import com.luoyang.myandroidxstudy.util.MyCallback
 
 class FindViewModel : ViewModel() {
-    var query = MutableLiveData<JsonObject>()
+    var query = MutableLiveData<List<Find>>()
 
     fun getQuery() {
-        NetServerEngine.instance.mNetServer.query().enqueue(
-            MyCallback(query)
-        )
+        NetServerEngine.instance.mNetServer.find().enqueue(MyCallback(query))
     }
 
 }

@@ -3,6 +3,7 @@
           package="com.luoyang.myandroidxstudy">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:name=".App"
             android:icon="@mipmap/ic_launcher"
@@ -11,13 +12,15 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name="com.luoyang.myandroidxstudy.ui.MainActivity"
+                android:name=".ui.MainActivity"
                 android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.DetailActivity">
         </activity>
     </application>
 
