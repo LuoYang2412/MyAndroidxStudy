@@ -1,8 +1,6 @@
 package com.luoyang.myandroidxstudy.util
 
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.luoyang.myandroidxstudy.api.ResponseData
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,11 +25,13 @@ class MyCallback<T> : Callback<ResponseData<T>> {
                 data.value = mResponseData.data
             } else {
                 Timber.tag("网络数据错误").e(mResponseData.message)
+                ToastUtil.show("网络数据错误")
             }
         }
     }
 
     override fun onFailure(call: Call<ResponseData<T>>, t: Throwable) {
         Timber.tag("网络错误").e(t)
+        ToastUtil.show("网络错误")
     }
 }

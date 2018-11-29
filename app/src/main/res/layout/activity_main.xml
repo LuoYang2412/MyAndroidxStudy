@@ -6,6 +6,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context=".ui.MainActivity">
 
     <include
@@ -16,10 +17,38 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:navGraph="@navigation/nav_graph"
             tools:layout="@layout/find_fragment"
+            android:id="@+id/navHost_fragment_find"
+            app:navGraph="@navigation/nav_graph_find"
             app:defaultNavHost="true"
-            android:id="@+id/navHost_fragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintTop_toBottomOf="@+id/include"/>
+
+    <fragment
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            tools:layout="@layout/bought_fragment"
+            android:id="@+id/navHost_fragment_bought"
+            app:navGraph="@navigation/nav_graph_bought"
+            android:visibility="gone"
+            app:defaultNavHost="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintTop_toBottomOf="@+id/include"/>
+
+    <fragment
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            tools:layout="@layout/me_fragment"
+            android:id="@+id/navHost_fragment_me"
+            app:navGraph="@navigation/nav_graph_me"
+            android:visibility="gone"
+            app:defaultNavHost="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"

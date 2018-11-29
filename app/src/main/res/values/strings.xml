@@ -5,4 +5,5 @@
     <string name="title_bought">已购</string>
     <string name="title_me">我的</string>
     <string name="search">搜索</string>
+    <string name="detailActivity_label">详情Activity</string>
 </resources>

@@ -3,45 +3,43 @@ package com.luoyang.myandroidxstudy.ui
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.google.gson.JsonObject
 import com.luoyang.myandroidxstudy.R
-import kotlinx.android.synthetic.main.bought_fragment.*
+import kotlinx.android.synthetic.main.detail_fragment.*
 import timber.log.Timber
 
-class BoughtFragment : Fragment() {
+class DetailFragment : Fragment() {
 
     companion object {
-        fun newInstance() = BoughtFragment()
+        fun newInstance() = DetailFragment()
     }
 
-    private lateinit var viewModel: BoughtViewModel
+    private lateinit var viewModel: DetailViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Timber.d("创建")
         setHasOptionsMenu(true)
+        Timber.d("创建")
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.bought_fragment, container, false)
+        return inflater.inflate(R.layout.detail_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(BoughtViewModel::class.java)
-        val observer = Observer<JsonObject> {
-            textView3.text = it.toString()
+        viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
+        val detail = arguments?.get("detail")
+        if (null != detail) {
+            detail_textView2.text = detail as String
         }
-        viewModel.data.observe(this, observer)
-        viewModel.bought()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.bought, menu)
+        inflater?.inflate(R.menu.detail, menu)
     }
+
 }
