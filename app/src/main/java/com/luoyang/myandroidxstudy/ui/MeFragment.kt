@@ -1,12 +1,11 @@
 package com.luoyang.myandroidxstudy.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.luoyang.myandroidxstudy.R
 import kotlinx.android.synthetic.main.me_fragment.*
 
@@ -17,6 +16,10 @@ class MeFragment : Fragment() {
     }
 
     private lateinit var viewModel: MeViewModel
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +36,15 @@ class MeFragment : Fragment() {
             textView5.text = it.age.toString()
         })
         viewModel.meInfo()
+
+        textView4.setOnClickListener {
+            val args = DetailFragmentArgs.Builder("我的信息").build().toBundle()
+            Navigation.findNavController(it).navigate(R.id.action_navigation_me_to_detailFragment3, args)
+        }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.me, menu)
+    }
 }

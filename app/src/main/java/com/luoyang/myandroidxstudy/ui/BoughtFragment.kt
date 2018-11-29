@@ -5,6 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.google.gson.JsonObject
 import com.luoyang.myandroidxstudy.R
 import kotlinx.android.synthetic.main.bought_fragment.*
@@ -38,6 +39,12 @@ class BoughtFragment : Fragment() {
         }
         viewModel.data.observe(this, observer)
         viewModel.bought()
+
+        textView3.setOnClickListener {
+            val build = DetailFragmentArgs.Builder("已购详情").build()
+            Navigation.findNavController(it)
+                .navigate(R.id.action_navigation_bought_to_detailFragment2, build.toBundle())
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

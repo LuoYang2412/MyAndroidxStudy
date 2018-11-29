@@ -9,5 +9,18 @@
             android:id="@+id/navigation_bought"
             android:name="com.luoyang.myandroidxstudy.ui.BoughtFragment"
             android:label="bought_fragment"
-            tools:layout="@layout/bought_fragment"/>
+            tools:layout="@layout/bought_fragment">
+        <action
+                android:id="@+id/action_navigation_bought_to_detailFragment2"
+                app:destination="@id/detailFragment2"/>
+    </fragment>
+    <fragment
+            android:id="@+id/detailFragment2"
+            android:name="com.luoyang.myandroidxstudy.ui.DetailFragment"
+            android:label="detail_fragment"
+            tools:layout="@layout/detail_fragment">
+        <argument
+                app:argType="string"
+                android:name="detail"/>
+    </fragment>
 </navigation>

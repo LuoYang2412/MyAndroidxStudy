@@ -9,6 +9,15 @@
             android:id="@+id/navigation_me"
             android:name="com.luoyang.myandroidxstudy.ui.MeFragment"
             android:label="me_fragment"
-            tools:layout="@layout/me_fragment"/>
+            tools:layout="@layout/me_fragment">
+        <action
+                android:id="@+id/action_navigation_me_to_detailFragment3"
+                app:destination="@id/detailFragment3"/>
+    </fragment>
+    <fragment
+            android:id="@+id/detailFragment3"
+            android:name="com.luoyang.myandroidxstudy.ui.DetailFragment"
+            android:label="detail_fragment"
+            tools:layout="@layout/detail_fragment"/>
 
 </navigation>
