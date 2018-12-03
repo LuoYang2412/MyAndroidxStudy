@@ -73,13 +73,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     private long oneTime = 0L;
-    private long exitTime = 1000;
 
     @Override
     public void onBackPressed() {
         Fragment currentFragment = currentNavHostFragment.getChildFragmentManager().getPrimaryNavigationFragment();
         if (currentFragment instanceof FindFragment || currentFragment instanceof BoughtFragment || currentFragment instanceof MeFragment) {
             long towTime = System.currentTimeMillis();
+            long exitTime = 1000;
             if (towTime - oneTime < exitTime) {
                 super.onBackPressed();
             } else {
