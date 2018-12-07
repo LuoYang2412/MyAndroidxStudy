@@ -2,6 +2,7 @@ package com.luoyang.myandroidxstudy.ui;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.luoyang.myandroidxstudy.R;
 import com.luoyang.myandroidxstudy.util.ToastUtil;
 
+/**
+ * 首页
+ *
+ * @author LuoYang
+ */
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private NavHostFragment currentNavHostFragment;
     private NavHostFragment findFragmentHost;
@@ -83,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             if (towTime - oneTime < exitTime) {
                 super.onBackPressed();
             } else {
-                ToastUtil.INSTANCE.show("再按一次退出");
+                ToastUtil.getInstance().show("再按一次退出");
                 oneTime = towTime;
             }
         } else {
